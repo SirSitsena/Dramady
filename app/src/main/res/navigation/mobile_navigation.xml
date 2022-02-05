@@ -3,23 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/popular_now">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.anestis.dramady.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/popular_now"
+        android:name="com.anestis.dramady.ui.popular_now.PopularNowFragment"
+        tools:layout="@layout/fragment_popular_now" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.anestis.dramady.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/all_time_best"
+        android:name="com.anestis.dramady.ui.all_time_best.AllTimeBestFragment"
+        tools:layout="@layout/fragment_all_time_best" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.anestis.dramady.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/watch_list"
+        android:name="com.anestis.dramady.ui.watch_list.WatchListFragment"
+        tools:layout="@layout/fragment_watch_list" />
+
+    <fragment
+        android:id="@+id/favorite_list"
+        android:name="com.anestis.dramady.ui.favorite_list.FavoriteListFragment"
+        tools:layout="@layout/fragment_favorite_list" />
+
+
+
 </navigation>

@@ -3,7 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/content_main.xml" value="0.35643115942028986" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/app_bar_main.xml" value="0.5161458333333333" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_all_time_best.xml" value="0.18881578947368421" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_favorite_list.xml" value="0.32598684210526313" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_popular_now.xml" value="0.18881578947368421" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_watch_list.xml" value="0.32598684210526313" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/nav_header_main.xml" value="0.33" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
       </map>
     </option>
   </component>
