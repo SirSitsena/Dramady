@@ -1,13 +1,13 @@
-package com.anestis.dramady.ui.all_time_best
+package com.group16.dramady.ui.popular_now
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class AllTimeBestViewModel : ViewModel() {
+class PopularNowViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is All time best movies Fragment"
+        value = "This is Popular now movies Fragment"
     }
     val text: LiveData<String> = _text
 }

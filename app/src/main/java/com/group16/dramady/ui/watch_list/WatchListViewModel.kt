@@ -1,13 +1,13 @@
-package com.anestis.dramady.ui.favorite_list
+package com.group16.dramady.ui.watch_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class FavoriteListViewModel : ViewModel() {
+class WatchListViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Favorite list Fragment"
+        value = "This is Watch list Fragment"
     }
     val text: LiveData<String> = _text
 }

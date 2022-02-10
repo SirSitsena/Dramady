@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.anestis.dramady">
+    package="com.group16.dramady">
 
     <application
         android:allowBackup="true"

@@ -1,4 +1,4 @@
-package com.anestis.dramady
+package com.group16.dramady
 
 import org.junit.Test
 

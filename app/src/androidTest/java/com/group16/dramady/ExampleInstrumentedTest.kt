@@ -1,4 +1,4 @@
-package com.anestis.dramady
+package com.group16.dramady
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.anestis.dramady", appContext.packageName)
+        assertEquals("com.group16.dramady", appContext.packageName)
     }
 }

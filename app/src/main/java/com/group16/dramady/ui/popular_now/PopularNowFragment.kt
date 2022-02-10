@@ -1,4 +1,4 @@
-package com.anestis.dramady.ui.popular_now
+package com.group16.dramady.ui.popular_now
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.anestis.dramady.databinding.FragmentPopularNowBinding
+import com.group16.dramady.databinding.FragmentPopularNowBinding
 
 class PopularNowFragment : Fragment() {
 
