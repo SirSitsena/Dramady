@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/search_page"
+            android:icon="@drawable/trend_up"
+            android:title="@string/search_page" />
+        <item
             android:id="@+id/popular_now"
             android:icon="@drawable/trend_up"
             android:title="@string/popular_now" />

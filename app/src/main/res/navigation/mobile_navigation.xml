@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/popular_now">
+    app:startDestination="@+id/search_page">
+
+
+    <fragment
+        android:id="@+id/search_page"
+        android:name="com.group16.dramady.ui.search_page.SearchPageFragment"
+        tools:layout="@layout/fragment_search_page" />
 
     <fragment
         android:id="@+id/popular_now"

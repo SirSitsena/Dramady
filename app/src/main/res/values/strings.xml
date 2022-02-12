@@ -11,4 +11,5 @@
     <string name="all_time_best_movies">All time best movies</string>
     <string name="favorites_list">Favorites list</string>
     <string name="watch_list">To watch list</string>
+    <string name="search_page">Search page</string>
 </resources>
