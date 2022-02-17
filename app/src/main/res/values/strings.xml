@@ -12,4 +12,6 @@
     <string name="favorites_list">Favorites list</string>
     <string name="watch_list">To watch list</string>
     <string name="search_page">Search page</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>
