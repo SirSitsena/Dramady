@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+
+    id 'kotlin-kapt'
 }
 
 android {
@@ -26,6 +28,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -35,8 +40,18 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.8.9'    //JSON parser
-    implementation 'com.squareup.okhttp3:okhttp:4.9.3'  //RestApi
+
+    // Room components
+    implementation "androidx.room:room-ktx:2.4.1"
+    kapt "androidx.room:room-compiler:2.4.1"
+    androidTestImplementation "androidx.room:room-testing:2.4.1"
+
+    //JSON parser
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    //RestApi
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'

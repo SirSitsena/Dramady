@@ -13,7 +13,7 @@ class AllTimeBestViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().also {
         it.value = "Loading...."
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) { //Anvand IO som Peter Säger?
 
             val popularNowList = ImdbManager.getAllTimeBestList()
             withContext(Dispatchers.Main) {

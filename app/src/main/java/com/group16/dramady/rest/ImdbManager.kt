@@ -11,7 +11,9 @@ import java.util.concurrent.TimeUnit
 
 object ImdbManager {
 
-    private const val API_KEY = "k_9t0l0iej"
+
+    private const val API_KEY1 = "k_9t0l0iej"
+    private const val API_KEY2 = "k_rs8s2dp4"
     private val client: OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(2, TimeUnit.SECONDS)
         .writeTimeout(2, TimeUnit.SECONDS)
@@ -25,7 +27,7 @@ object ImdbManager {
 
     fun getPopularNowList(): List<MoviesList.Movie>? {   //MostPopularMovies
         val request = Request.Builder()
-            .url("https://imdb-api.com/en/API/MostPopularMovies/$API_KEY")
+            .url("https://imdb-api.com/en/API/MostPopularMovies/$API_KEY2")
             .build()
         try {
             client.newCall(request).execute().use { response ->
@@ -45,7 +47,7 @@ object ImdbManager {
     fun getAllTimeBestList(): List<MoviesList.Movie>? {
 
         val request = Request.Builder()
-            .url("https://imdb-api.com/en/API/Top250Movies/$API_KEY")
+            .url("https://imdb-api.com/en/API/Top250Movies/$API_KEY2")
             .build()
         try {
             client.newCall(request).execute().use { response ->
