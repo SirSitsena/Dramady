@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.group16.dramady.R
 import com.group16.dramady.rest.result_type.SearchMovie
+import com.squareup.picasso.Picasso
 
 class SearchListAdapter(private val context: Context,
                         private val dataSource: List<SearchMovie.aMovie>
@@ -37,10 +39,18 @@ class SearchListAdapter(private val context: Context,
 
         val titleTextView = rowView.findViewById(R.id.title_list_item) as TextView
         val descTextView = rowView.findViewById(R.id.description_list_item) as TextView
+        val imageView = rowView.findViewById(R.id.image_list_item) as ImageView
+
+
 
         val movie = getItem(position)
         titleTextView.text = movie?.title ?: "No title available" //ADD  LOCALIZATION STRINGS
         descTextView.text = movie?.description ?: "No desc available"
+        val picasso = Picasso.get()
+            .load(movie.image)
+            .resize(100, 100)
+            .centerCrop()
+            .into(imageView)
         Log.i("image string: ", movie?.image.toString())
 
 
