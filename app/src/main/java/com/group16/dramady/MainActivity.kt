@@ -1,8 +1,6 @@
 package com.group16.dramady
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -12,12 +10,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
-import androidx.lifecycle.lifecycleScope
 import com.group16.dramady.databinding.ActivityMainBinding
-import com.group16.dramady.rest.ImdbManager
 import com.group16.dramady.storage.MovieRoomDatabase
-import com.group16.dramady.storage.entity.Movie
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
@@ -56,38 +50,12 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         // Initializes the database object
-        val database = MovieRoomDatabase.getDatabase(this, applicationScope)
+        MovieRoomDatabase.getDatabase(this, applicationScope)
 
-        var movieDao = database.movieDao()
 
         applicationScope.launch(Dispatchers.IO){ // Separate in a new Class for Database Updates
-            val popularNowList = ImdbManager.getPopularNowList()
-//            val allTimeBestList = ImdbManager.getAllTimeBestList()
-
-            if( popularNowList != null ){
-                if(movieDao.count() != 0){
-                    Log.i("Error", "!=0")
-                    movieDao.deleteAll()
-                }
-                Log.i("Error", "!=null")
-                for ( movieApi in popularNowList ){
-                    movieDao.insert( Movie(
-                        movieApi.id,
-                        movieApi.title,
-                        movieApi.fullTitle,
-                        "",
-                        movieApi.image,
-                        movieApi.year,
-                        movieApi.crew,
-                        movieApi.imDbRating,
-                        movieApi.rank,
-                        movieApi.rankUpDown,
-                        movieApi.imDbRatingCount,
-                        -1
-                    )
-                    )
-                }
-            }
+            Updater.updateAllTimeBest()
+            Updater.updatePopularNow()
         }
 
 

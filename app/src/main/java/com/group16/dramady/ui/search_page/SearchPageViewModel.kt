@@ -5,13 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.group16.dramady.rest.ImdbManager
+import com.group16.dramady.rest.apiManager
 import com.group16.dramady.rest.result_type.SearchMovie
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
 
 class SearchPageViewModel : ViewModel() {
 
@@ -32,7 +30,7 @@ class SearchPageViewModel : ViewModel() {
         _resultText.value = "Loading..."
 
         viewModelScope.launch(Dispatchers.IO) {
-            val search = ImdbManager.getSearchMoviesByKeywords(keywords)
+            val search = apiManager.getSearchMoviesByKeywords(keywords)
             val movies = search?.results
 
             withContext(Dispatchers.Main) {
