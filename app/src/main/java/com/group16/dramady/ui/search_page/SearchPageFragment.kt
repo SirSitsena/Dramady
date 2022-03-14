@@ -38,6 +38,7 @@ class SearchPageFragment : Fragment() {
         val resultsList: ListView = binding.searchResultsSearchPage
         resultsList.adapter =
             searchPageViewModel.resultList.value?.let { SearchListAdapter(requireActivity(), it) }
+
         searchPageViewModel.resultList.observe(viewLifecycleOwner, Observer {
             resultsList.adapter = SearchListAdapter(requireActivity(), it)
         })

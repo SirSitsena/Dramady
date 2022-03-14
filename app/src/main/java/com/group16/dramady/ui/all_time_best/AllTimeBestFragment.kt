@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.group16.dramady.databinding.FragmentAllTimeBestBinding
 import android.os.AsyncTask
+import android.widget.ListView
+import com.group16.dramady.ui.popular_now.PopularListAdapter
 import kotlin.concurrent.thread
 
 
@@ -36,10 +38,16 @@ class AllTimeBestFragment : Fragment() {
         _binding = FragmentAllTimeBestBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val listView: ListView = binding.listAllTimeBest
+        allTimeBestViewModel.list.observe(viewLifecycleOwner, Observer {
+            listView.adapter = AllTimeBestListAdapter(requireActivity(), it)
+        })
+
+        /*
         val textView: TextView = binding.textAllTimeBest
         allTimeBestViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        })
+        })*/
         return root
     }
 

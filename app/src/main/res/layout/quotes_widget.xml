@@ -45,6 +45,13 @@
             android:maxLines="4"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in fringilla metus, nec pulvinar mi. Vivamus ultricies lacus arcu, et."
             android:textSize="18sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_appwidget" />
     </LinearLayout>
+
+
 
 </LinearLayout>

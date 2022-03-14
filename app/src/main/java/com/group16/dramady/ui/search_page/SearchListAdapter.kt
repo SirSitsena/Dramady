@@ -37,9 +37,9 @@ class SearchListAdapter(private val context: Context,
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val rowView = inflator.inflate(R.layout.list_item_search_result, parent, false)
 
-        val titleTextView = rowView.findViewById(R.id.title_list_item) as TextView
-        val descTextView = rowView.findViewById(R.id.description_list_item) as TextView
-        val imageView = rowView.findViewById(R.id.image_list_item) as ImageView
+        val titleTextView = rowView.findViewById(R.id.title_search_list_item) as TextView
+        val descTextView = rowView.findViewById(R.id.description_search_list_item) as TextView
+        val imageView = rowView.findViewById(R.id.image_search_list_item) as ImageView
 
 
 

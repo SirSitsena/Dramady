@@ -67,7 +67,7 @@ object apiManager {
 
     fun getSearchMoviesByKeywords(keywords: String): SearchMovie? {
         val request = Request.Builder()
-            .url("http://192.168.211.1:8000/api/movies/search/$keywords")
+            .url("http://65.108.61.241:8000/api/movies/search/$keywords")
             .build()
         try {
             client.newCall(request).execute().use { response ->
