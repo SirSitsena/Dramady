@@ -25,10 +25,11 @@
 
         <ListView
             android:id="@+id/list_all_time_best"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:divider="@android:color/transparent"
-            android:dividerHeight="10sp" />
+            android:dividerHeight="10sp"
+            android:layout_marginBottom="12dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
