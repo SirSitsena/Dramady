@@ -37,7 +37,6 @@
     <fragment
         android:id="@+id/moviePageFragment"
         android:name="com.group16.dramady.ui.movie_page.MoviePageFragment"
-        android:label="fragment_movie_page"
         tools:layout="@layout/fragment_movie_page" />
 
 

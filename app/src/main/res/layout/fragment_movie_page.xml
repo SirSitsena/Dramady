@@ -24,7 +24,7 @@
                 android:id="@+id/text_movie_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Movie Page"
+                android:text="@string/movie_page"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
