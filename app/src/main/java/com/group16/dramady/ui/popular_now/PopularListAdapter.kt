@@ -29,23 +29,19 @@ class PopularListAdapter(private val context: Context, private val dataSource: L
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val rowView = inflator.inflate(R.layout.list_item_popular_now, parent, false)
+        val rowView = inflator.inflate(R.layout.list_item_cardview, parent, false)
 
-        val titleTextView = rowView.findViewById(R.id.title_popular_list_item) as TextView
-        val fullTitleTextView = rowView.findViewById(R.id.full_title_popular_list_item) as TextView
-        val imageView = rowView.findViewById(R.id.image_popular_list_item) as ImageView
-        val rankTextView = rowView.findViewById(R.id.rank_popular_list_item) as TextView
-        val yearTextView = rowView.findViewById(R.id.year_popular_list_item) as TextView
-        val imdbRatingTextView = rowView.findViewById(R.id.imdb_rating_popular_list_item) as TextView
-        val genresTextView = rowView.findViewById(R.id.genres_popular_list_item) as TextView
-        val starsTextView = rowView.findViewById(R.id.stars_popular_list_item) as TextView
+        val titleTextView = rowView.findViewById(R.id.title_card_list_item) as TextView
+        val imageView = rowView.findViewById(R.id.image_card_list_item) as ImageView
+        val yearTextView = rowView.findViewById(R.id.year_card_list_item) as TextView
+        val imdbRatingTextView = rowView.findViewById(R.id.imdb_rating_card_list_item) as TextView
+        val genresTextView = rowView.findViewById(R.id.genres_card_list_item) as TextView
+        val starsTextView = rowView.findViewById(R.id.stars_card_list_item) as TextView
 
         val movie = getItem(position)
         titleTextView.text = movie?.title ?: "No title available" //ADD  LOCALIZATION STRINGS
-        fullTitleTextView.text = movie?.fullTitle ?: "Full title not available"
-        yearTextView.text = "Year ("+movie?.year+")" ?: "Year (N/A)"
-        imdbRatingTextView.text = "Imdb ("+ movie?.imDbRating.toString()+"/10)" ?: "Imdb (N/A)"
-        rankTextView.text = movie?.rank.toString() ?: "N/A"
+        yearTextView.text = movie?.year ?: "Year (N/A)"
+        imdbRatingTextView.text = "("+ movie?.imDbRating.toString()+"/10)" ?: "(N/A)"
         genresTextView.text = movie?.genres
         starsTextView.text = movie?.stars
 

@@ -27,14 +27,14 @@ class AllTimeBestListAdapter(private val context: Context, private val dataSourc
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val rowView = inflator.inflate(R.layout.list_item_all_time_best_constraint, parent, false)
+        val rowView = inflator.inflate(R.layout.list_item_cardview, parent, false)
 
-        val titleTextView = rowView.findViewById(R.id.title_best_list_item) as TextView
-        val imageView = rowView.findViewById(R.id.image_best_list_item) as ImageView
-        val yearTextView = rowView.findViewById(R.id.year_best_list_item) as TextView
-        val imdbRatingTextView = rowView.findViewById(R.id.imdb_rating_best_list_item) as TextView
-        val genresTextView = rowView.findViewById(R.id.genres_best_list_item) as TextView
-        val starsTextView = rowView.findViewById(R.id.stars_best_list_item) as TextView
+        val titleTextView = rowView.findViewById(R.id.title_card_list_item) as TextView
+        val imageView = rowView.findViewById(R.id.image_card_list_item) as ImageView
+        val yearTextView = rowView.findViewById(R.id.year_card_list_item) as TextView
+        val imdbRatingTextView = rowView.findViewById(R.id.imdb_rating_card_list_item) as TextView
+        val genresTextView = rowView.findViewById(R.id.genres_card_list_item) as TextView
+        val starsTextView = rowView.findViewById(R.id.stars_card_list_item) as TextView
 
         val movie = getItem(position)
         titleTextView.text = movie?.title ?: "No title available" //ADD  LOCALIZATION STRINGS

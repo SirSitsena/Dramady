@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background_gray"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -25,6 +26,10 @@
         <ListView
             android:id="@+id/list_popular_now"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10sp"
+            android:layout_marginBottom="12dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
