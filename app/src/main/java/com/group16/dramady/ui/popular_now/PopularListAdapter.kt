@@ -1,6 +1,7 @@
 package com.group16.dramady.ui.popular_now
 
 import android.content.Context
+import android.os.Bundle
 import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,8 +10,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.group16.dramady.R
 import com.group16.dramady.storage.entity.PopularNowMovies
+import com.group16.dramady.ui.movie_page.MovieParseable
 import com.squareup.picasso.Picasso
 
 class PopularListAdapter(private val context: Context, private val dataSource: List<PopularNowMovies>) : BaseAdapter() {
@@ -26,6 +29,11 @@ class PopularListAdapter(private val context: Context, private val dataSource: L
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
+    }
+
+    fun getTitleId(position: Int): String {
+        val mov = dataSource.get(position)
+        return mov.id
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -51,6 +59,14 @@ class PopularListAdapter(private val context: Context, private val dataSource: L
             .centerCrop()
             .into(imageView)
 
+        rowView.setOnClickListener {
+            val parseableMovie = MovieParseable(movie.rank, movie.title, movie.fullTitle, movie.year, movie.image, movie.releaseDate, movie.runtimeMins, movie.runtimeStr, movie.plot,
+                                                movie.directors, movie.writers, movie.stars, movie.genres, movie.companies, movie.contentRating, movie.imDbRating, movie.imDbRatingVotes, movie.metacriticRating)
+            val bundle = Bundle()
+            bundle.putString("id", movie.id)
+            bundle.putSerializable("movie", parseableMovie)
+            rowView.findNavController().navigate(R.id.moviePageFragment, bundle)
+        }
 
         return rowView
     }

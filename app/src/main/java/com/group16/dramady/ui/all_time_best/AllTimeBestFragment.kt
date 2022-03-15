@@ -42,12 +42,6 @@ class AllTimeBestFragment : Fragment() {
         allTimeBestViewModel.list.observe(viewLifecycleOwner, Observer {
             listView.adapter = AllTimeBestListAdapter(requireActivity(), it)
         })
-
-        /*
-        val textView: TextView = binding.textAllTimeBest
-        allTimeBestViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })*/
         return root
     }
 

@@ -14,7 +14,11 @@
     <fragment
         android:id="@+id/popular_now"
         android:name="com.group16.dramady.ui.popular_now.PopularNowFragment"
-        tools:layout="@layout/fragment_popular_now" />
+        tools:layout="@layout/fragment_popular_now" >
+        <action
+            android:id="@+id/action_popular_now_to_moviePageFragment"
+            app:destination="@id/moviePageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/all_time_best"
@@ -30,7 +34,11 @@
         android:id="@+id/favorite_list"
         android:name="com.group16.dramady.ui.favorite_list.FavoriteListFragment"
         tools:layout="@layout/fragment_favorite_list" />
-
+    <fragment
+        android:id="@+id/moviePageFragment"
+        android:name="com.group16.dramady.ui.movie_page.MoviePageFragment"
+        android:label="fragment_movie_page"
+        tools:layout="@layout/fragment_movie_page" />
 
 
 </navigation>

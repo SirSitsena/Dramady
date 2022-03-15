@@ -1,14 +1,17 @@
 package com.group16.dramady.ui.all_time_best
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.group16.dramady.R
 import com.group16.dramady.storage.entity.AllTimeBestMovies
+import com.group16.dramady.ui.movie_page.MovieParseable
 import com.squareup.picasso.Picasso
 
 class AllTimeBestListAdapter(private val context: Context, private val dataSource: List<AllTimeBestMovies>) : BaseAdapter() {
@@ -49,6 +52,15 @@ class AllTimeBestListAdapter(private val context: Context, private val dataSourc
             .centerCrop()
             .into(imageView)
 
+
+        rowView.setOnClickListener {
+            val parseableMovie = MovieParseable(movie.rank, movie.title, movie.fullTitle, movie.year, movie.image, movie.releaseDate, movie.runtimeMins, movie.runtimeStr, movie.plot,
+                movie.directors, movie.writers, movie.stars, movie.genres, movie.companies, movie.contentRating, movie.imDbRating, movie.imDbRatingVotes, movie.metacriticRating)
+            val bundle = Bundle()
+            bundle.putString("id", movie.id)
+            bundle.putSerializable("movie", parseableMovie)
+            rowView.findNavController().navigate(R.id.moviePageFragment, bundle)
+        }
 
         return rowView
     }
