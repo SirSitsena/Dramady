@@ -1,9 +1,7 @@
-package com.group16.dramady.ui.popular_now
+package com.group16.dramady.ui.watch_list
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Layout
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,18 +10,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import com.group16.dramady.R
-import com.group16.dramady.storage.entity.PopularNowMovies
+import com.group16.dramady.storage.entity.WatchListMovies
 import com.group16.dramady.ui.movie_page.MovieParseable
 import com.squareup.picasso.Picasso
 
-class PopularListAdapter(private val context: Context, private val dataSource: List<PopularNowMovies>) : BaseAdapter() {
+class WatchListAdapter(private val context: Context, private val dataSource: List<WatchListMovies>) : BaseAdapter() {
     private val inflator: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getCount(): Int {
         return dataSource.size
     }
 
-    override fun getItem(position: Int): PopularNowMovies {
+    override fun getItem(position: Int): WatchListMovies {
         return dataSource.get(position)
     }
 
@@ -61,7 +59,7 @@ class PopularListAdapter(private val context: Context, private val dataSource: L
 
         rowView.setOnClickListener {
             val parseableMovie = MovieParseable(movie.rank, movie.title, movie.fullTitle, movie.year, movie.image, movie.releaseDate, movie.runtimeMins, movie.runtimeStr, movie.plot,
-                                                movie.directors, movie.writers, movie.stars, movie.genres, movie.companies, movie.contentRating, movie.imDbRating, movie.imDbRatingVotes, movie.metacriticRating)
+                movie.directors, movie.writers, movie.stars, movie.genres, movie.companies, movie.contentRating, movie.imDbRating, movie.imDbRatingVotes, movie.metacriticRating)
             val bundle = Bundle()
             bundle.putString("id", movie.id)
             bundle.putSerializable("movie", parseableMovie)

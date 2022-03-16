@@ -13,20 +13,6 @@ import kotlinx.coroutines.withContext
 class PopularNowViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().also {
-        /*it.value = "Loading...."
-        viewModelScope.launch(Dispatchers.IO) {
-
-            var popularNowList = MovieRoomDatabase.getPopularNowDao()?.getMoviesSortedByRank()
-
-//            if(popularNowList?.isEmpty() == true){
-//                popularNowList = null
-//            }
-            withContext(Dispatchers.Main) {
-//                Log.i("Name", popularNowList.toString())
-                //it.value = popularNowList?.joinToString(separator = "\n") { movie -> movie.title }?: "Error"
-                //it.value =
-            }
-        } */
     }
     val text: LiveData<String> = _text
 

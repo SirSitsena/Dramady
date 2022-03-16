@@ -48,7 +48,7 @@ class AllTimeBestListAdapter(private val context: Context, private val dataSourc
         starsTextView.text = movie?.stars
         val picasso = Picasso.get()
             .load(movie.image)
-            .resize(150, 150)
+            .resize(3000, 300)
             .centerCrop()
             .into(imageView)
 
