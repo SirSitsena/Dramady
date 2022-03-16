@@ -20,10 +20,13 @@ interface WatchListMoviesDao {
     @Query("DELETE FROM watchlist_movies_table")
     suspend fun deleteAll()
 
+    @Query("DELETE FROM watchlist_movies_table WHERE id = :movieId")
+    suspend fun deleteById(movieId: String)
+
     @Query("SELECT COUNT(*) FROM watchlist_movies_table")
     fun count(): Int
 
-    @Query("SELECT * FROM watchlist_movies_table WHERE id = :movieId")
+    @Query("SELECT EXISTS(SELECT * FROM watchlist_movies_table WHERE id = :movieId)")
     fun isWatchlisted(movieId: String): Boolean
 
 }

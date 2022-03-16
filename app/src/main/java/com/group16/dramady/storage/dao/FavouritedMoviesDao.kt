@@ -18,9 +18,13 @@ interface FavouritedMoviesDao {
     @Query("DELETE FROM favourited_movies_table")
     suspend fun deleteAll()
 
+    @Query("DELETE FROM favourited_movies_table WHERE id = :movieId")
+    suspend fun deleteById(movieId: String)
+
     @Query("SELECT COUNT(*) FROM favourited_movies_table")
     fun count(): Int
 
-    @Query("SELECT * FROM favourited_movies_table WHERE id = :movieId")
+    //@Query("SELECT * FROM favourited_movies_table WHERE id = :movieId")
+    @Query("SELECT EXISTS(SELECT * FROM favourited_movies_table WHERE id = :movieId)")
     fun isFavourited(movieId: String): Boolean
 }
