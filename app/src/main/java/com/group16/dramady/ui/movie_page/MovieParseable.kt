@@ -2,150 +2,76 @@ package com.group16.dramady.ui.movie_page
 
 import java.io.Serializable
 
-class MovieParseable(private val rank: Int,
-                     private val title: String,
-                     private val fullTitle: String,
-                     private val year: String,
-                     private val image: String,
-                     private val releaseDate: String,
-                     private val runtimeMins: Int,
-                     private val runtimeStr: String,
-                     private val plot: String,
-                     private val directors: String,
-                     private val writers: String,
-                     private val stars: String,
-                     private val genres: String,
-                     private val companies: String,
-                     private val contentRating: String,
-                     private val imDbRating: Float,
-                     private val imDbRatingVotes: Int,
-                     private val metacriticRating: Int): Serializable {
+class MovieParseable(private val rank: Int?,
+                     private val title: String?,
+                     private val fullTitle: String?,
+                     private val year: String?,
+                     private val image: String?,
+                     private val releaseDate: String?,
+                     private val runtimeMins: Int?,
+                     private val runtimeStr: String?,
+                     private val plot: String?,
+                     private val directors: String?,
+                     private val writers: String?,
+                     private val stars: String?,
+                     private val genres: String?,
+                     private val companies: String?,
+                     private val contentRating: String?,
+                     private val imDbRating: String?,
+                     private val imDbRatingVotes: String?,
+                     private val metacriticRating: Int?): Serializable {
     public fun getRank() : Int {
-        return rank
+        return rank ?: 0
     }
     public fun getTitle() : String {
-        return title
+        return title ?: "No title available.."
     }
     public fun getFullTitle() : String {
-        return fullTitle
+        return fullTitle ?: "No title available.."
     }
     public fun getYear() : String {
-        return year
+        return year?: "No year available.."
     }
     public fun getImage() : String {
-        return image
+        return image?: ""
     }
     public fun getReleaseDate(): String {
-        return releaseDate
+        return releaseDate?: "No title available.."
     }
     public fun getRuntimeMins(): Int {
-        return runtimeMins
+        return runtimeMins ?: 0
     }
     public fun getRuntimeStr(): String {
-        return runtimeStr
+        return runtimeStr?: "No runtime available.."
     }
     public fun getPlot(): String {
-        return plot
+        return plot?: "No plot available.."
     }
     public fun getDirectors(): String {
-        return directors
+        return directors?: "No directors available.."
     }
     public fun getWriters(): String {
-        return writers
+        return writers?: "No writers available.."
     }
     public fun getStars(): String {
-        return stars
+        return stars?: "No stars available.."
     }
     public fun getGenres(): String {
-        return genres
+        return genres?: "No genres available.."
     }
     public fun getCompanies(): String{
-        return companies
+        return companies?: "No companies available.."
     }
     public fun getContentRating(): String {
-        return contentRating
+        return contentRating?: "No content rating available.."
     }
-    public fun getImDbRating(): Float {
-        return imDbRating
+    public fun getImDbRating(): String {
+        return imDbRating ?: "No imdb rating available.."
     }
-    public fun getImDbRatingVotes(): Int {
-        return imDbRatingVotes
+    public fun getImDbRatingVotes(): String {
+        return imDbRatingVotes?: "No imdb rating votes available.."
     }
     public fun getMetacriticRating(): Int {
-        return metacriticRating
+        return metacriticRating?: 0
     }
 }
-
-
-    /*private val rank : Int
-        get() {
-            return rank
-        }
-    private val title : String
-        get() {
-            return title
-        }
-    private val fullTitle : String
-        get() {
-            return fullTitle
-        }
-    private val year : String
-        get() {
-            return year
-        }
-    private val image : String
-        get() {
-            return image
-        }
-    private val releaseDate: String
-        get() {
-            return releaseDate
-        }
-    private val runtimeMins: Int
-        get() {
-            return runtimeMins
-        }
-    private val runtimeStr: String
-        get() {
-            return runtimeStr
-        }
-    private val plot: String
-        get() {
-            return plot
-        }
-    private val directors: String
-        get() {
-            return directors
-        }
-    private val writers: String
-        get() {
-            return writers
-        }
-    private val stars: String
-        get() {
-            return stars
-        }
-    private val genres: String
-        get() {
-            return genres
-        }
-    private val companies: String
-        get() {
-            return companies
-        }
-    private val contentRating: String
-        get() {
-            return contentRating
-        }
-    private val imDbRating: Float
-        get() {
-            return imDbRating
-        }
-    private val imDbRatingVotes: Int
-        get() {
-            return imDbRatingVotes
-        }
-    private val metacriticRating: Int
-        get() {
-            return metacriticRating
-        } */

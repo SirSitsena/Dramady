@@ -18,4 +18,14 @@
     <string name="genres_list_item">Genres:</string>
     <string name="stars_list_item">Stars:</string>
     <string name="movie_page">Movie Page</string>
+    <string name="log_in">Log in</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="Reviews">Reviews</string>
+    <string name="View_Reviews">View Reviews</string>
+    <string name="leave_note">Leave Note</string>
+    <string name="submit">Submit!</string>
+    <string name="createReview">Create Review</string>
+    <string name="updateReview">Update Review</string>
+    <string name="myreview">My review:</string>
 </resources>

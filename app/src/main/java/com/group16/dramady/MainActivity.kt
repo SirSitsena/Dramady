@@ -1,7 +1,10 @@
 package com.group16.dramady
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.group16.dramady.databinding.ActivityMainBinding
 import com.group16.dramady.storage.MovieRoomDatabase
 import kotlinx.coroutines.*
+import java.util.prefs.AbstractPreferences
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         // Initializes the database object
         MovieRoomDatabase.getDatabase(this, applicationScope)
+
 
 
         applicationScope.launch(Dispatchers.IO){ // Separate in a new Class for Database Updates

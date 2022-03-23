@@ -192,6 +192,51 @@
                 app:layout_constraintStart_toEndOf="@+id/image_movie_page"
                 app:layout_constraintTop_toBottomOf="@+id/text_movie_page" />
 
+            <Button
+                android:id="@+id/reviewsButton_movie_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/View_Reviews"
+                app:layout_constraintEnd_toStartOf="@id/leave_review_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myReview_content_movie_page" />
+
+            <Button
+                android:id="@+id/leave_review_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/leave_note"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/reviewsButton_movie_page"
+                app:layout_constraintTop_toBottomOf="@+id/myReview_content_movie_page" />
+
+            <TextView
+                android:id="@+id/myReview_title_movie_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/myreview"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/metacritic_movie_page" />
+
+            <TextView
+                android:id="@+id/myReview_content_movie_page"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myReview_title_movie_page" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

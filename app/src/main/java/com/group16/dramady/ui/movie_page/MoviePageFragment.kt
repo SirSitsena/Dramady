@@ -1,5 +1,6 @@
 package com.group16.dramady.ui.movie_page
 
+import android.app.Dialog
 import android.graphics.Movie
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,14 +9,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewTreeLifecycleOwner
+import androidx.navigation.fragment.findNavController
 import com.group16.dramady.R
 import com.group16.dramady.databinding.FragmentMoviePageBinding
+import com.group16.dramady.rest.result_type.Reviews
 import com.group16.dramady.storage.MovieRoomDatabase
 import com.group16.dramady.storage.entity.FavouritedMovies
+import com.group16.dramady.storage.entity.UserReview
 import com.group16.dramady.storage.entity.WatchListMovies
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
@@ -46,67 +51,85 @@ class MoviePageFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory { MoviePageViewModel(arguments?.getString("id")) }).get(MoviePageViewModel::class.java)
         _binding = FragmentMoviePageBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
-
-
+        var reviewId: Int = -1
         val titleId = arguments?.getString("id")
         val movie: MovieParseable = arguments?.getSerializable("movie") as MovieParseable
 
         val favouriteIcon = binding.favouriteMoviePage
         val watchlistIcon = binding.watchlistMoviePage
+        val reviewsButton = binding.reviewsButtonMoviePage
+        val leaveReviewButton = binding.leaveReviewButton
+        val myReviewTitle = binding.myReviewTitleMoviePage
+        val myReviewContent = binding.myReviewContentMoviePage
+        myReviewContent.isEnabled = false
+        myReviewContent.isVisible = false
+        myReviewTitle.isEnabled = false
+        myReviewTitle.isVisible = false
+
+        val dialog = Dialog(requireActivity())
+        dialog.setContentView(R.layout.reviews_dialog)
+        val listView = dialog.findViewById<ListView>(R.id.listview_reviews_dialog)
+        dialog.setTitle("Reviews:")
+
+        viewModel.myReview.observe(viewLifecycleOwner, Observer {
+            reviewId = it.id
+            myReviewTitle.isVisible = true
+            myReviewTitle.isEnabled = true
+            myReviewContent.text = it.review
+            myReviewContent.isVisible = true
+            myReviewContent.isEnabled = true
+        })
+
+        reviewsButton.setOnClickListener {
+            dialog.show()
+        }
+
+        leaveReviewButton.setOnClickListener {
+            val bundle = Bundle()
+            if(reviewId != -1){
+                bundle.putInt("reviewId", reviewId)
+            }
+            bundle.putString("titleId", titleId)
+            findNavController().navigate(R.id.review, bundle)
+        }
+
+        viewModel.reviews.observe(viewLifecycleOwner, Observer {
+            if(it != null){
+                listView.adapter = ReviewsArrayAdapter(requireContext(), it)
+            }
+        })
 
         viewModel.isFavourited.observe(viewLifecycleOwner, Observer {
             if(it == true){
                 favouriteIcon.setImageResource(R.drawable.favourite_filled_icon)
                 if(titleId != null && movie != null){
                     favouriteIcon.setOnClickListener {
-                        uiScope.launch(Dispatchers.IO){
-                            Log.i("Removing from favourites: ", movie.toString())
-                            MovieRoomDatabase.getFavouritedMoviesDao()?.deleteById(titleId)
-                            viewModel.refresh()
-                        }
+                        viewModel.deleteFavourite(titleId)
                     }
                 }
             } else {
                 favouriteIcon.setImageResource(R.drawable.favourite_icon)
                 if(titleId != null && movie != null){
                     favouriteIcon.setOnClickListener {
-                        uiScope.launch(Dispatchers.IO){
-                            // Remove from favourites
-                            MovieRoomDatabase.getFavouritedMoviesDao()?.insert(FavouritedMovies(titleId, movie.getRank(), movie.getTitle(), movie.getFullTitle(), movie.getYear(), movie.getImage(), movie.getReleaseDate(), movie.getRuntimeMins(), movie.getRuntimeStr(), movie.getPlot(),
-                                movie.getDirectors(), movie.getWriters(), movie.getStars(), movie.getGenres(), movie.getCompanies(), movie.getContentRating(), movie.getImDbRating(), movie.getImDbRatingVotes(), movie.getMetacriticRating()))
-                            // Refresh the livedata to reflect the icon on screen.
-                            viewModel.refresh()
-                        }
+                        viewModel.addFavourite(titleId, movie)
                     }
                 }
             }
         })
 
         viewModel.isWatchlisted.observe(viewLifecycleOwner, Observer {
-            Log.i("watchlisted: ", it.toString())
             if(it == true){
                 watchlistIcon.setImageResource(R.drawable.star_filled_icon)
                 if(titleId != null && movie != null){
                     watchlistIcon.setOnClickListener {
-                        Log.i("clicked ", "watchlist")
-                        uiScope.launch(Dispatchers.IO){
-                            MovieRoomDatabase.getWatchlistedMoviesDao()?.deleteById(titleId)
-                            viewModel.refresh()
-                        }
+                        viewModel.deleteWatchlistItem(titleId)
                     }
                 }
             } else {
                 watchlistIcon.setImageResource(R.drawable.star_icon)
                 if(titleId != null && movie != null) {
                     watchlistIcon.setOnClickListener {
-                        Log.i("clicked ", "watchlist")
-                        uiScope.launch(Dispatchers.IO){
-                            MovieRoomDatabase.getWatchlistedMoviesDao()?.insert(WatchListMovies(titleId, movie.getRank(), movie.getTitle(), movie.getFullTitle(), movie.getYear(), movie.getImage(), movie.getReleaseDate(), movie.getRuntimeMins(), movie.getRuntimeStr(), movie.getPlot(),
-                                movie.getDirectors(), movie.getWriters(), movie.getStars(), movie.getGenres(), movie.getCompanies(), movie.getContentRating(), movie.getImDbRating(), movie.getImDbRatingVotes(), movie.getMetacriticRating()))
-                            viewModel.refresh()
-                        }
+                        viewModel.addWatchlistItem(titleId, movie)
                     }
                 }
             }

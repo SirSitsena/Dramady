@@ -59,7 +59,7 @@ class WatchListAdapter(private val context: Context, private val dataSource: Lis
 
         rowView.setOnClickListener {
             val parseableMovie = MovieParseable(movie.rank, movie.title, movie.fullTitle, movie.year, movie.image, movie.releaseDate, movie.runtimeMins, movie.runtimeStr, movie.plot,
-                movie.directors, movie.writers, movie.stars, movie.genres, movie.companies, movie.contentRating, movie.imDbRating, movie.imDbRatingVotes, movie.metacriticRating)
+                movie.directors, movie.writers, movie.stars, movie.genres, movie.companies, movie.contentRating, movie.imDbRating.toString(), movie.imDbRatingVotes.toString(), movie.metacriticRating)
             val bundle = Bundle()
             bundle.putString("id", movie.id)
             bundle.putSerializable("movie", parseableMovie)

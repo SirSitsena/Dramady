@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import com.group16.dramady.R
 import com.group16.dramady.storage.entity.FavouritedMovies
-import com.group16.dramady.storage.entity.PopularNowMovies
 import com.group16.dramady.ui.movie_page.MovieParseable
 import com.squareup.picasso.Picasso
 
@@ -76,8 +75,8 @@ class FavouriteListAdapter(private val context: Context, private val dataSource:
                 movie.genres,
                 movie.companies,
                 movie.contentRating,
-                movie.imDbRating,
-                movie.imDbRatingVotes,
+                movie.imDbRating.toString(),
+                movie.imDbRatingVotes.toString(),
                 movie.metacriticRating
             )
             val bundle = Bundle()
