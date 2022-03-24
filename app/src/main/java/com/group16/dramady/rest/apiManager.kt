@@ -126,37 +126,4 @@ object apiManager {
         }
         return null
     }
-    /*
-    fun getTokenByLogin(username: String, password: String): String? {
-        val requestBody: RequestBody
-        requestBody = FormBody.Builder()
-            .add("grant_type", "password")
-            .add("username", username)
-            .add("password", password)
-            .build()
-        val request = Request.Builder()
-            .url("http:/192.168.1.107:8000/api/accounts/tokens/")
-            .post(requestBody)
-            .build()
-        try {
-            client.newCall(request).execute().use { response ->
-                Log.i("response: ", response.toString())
-                return if(response.isSuccessful) {
-                    val cookies = response.headers("Set-Cookie")
-                    Log.i("headers: ", response.headers.toString())
-                    Log.i("cookies: ", cookies.toString())
-                    var token = cookies[0].substringAfter("=")
-                    token = token.substringBefore(";")
-                    Log.i("token", token.toString())
-
-                    return token
-                } else {
-                    null
-                }
-            }
-        } catch(e:IOException){
-            Log.i(e::class.java.simpleName, e.message.toString())
-            return null
-        }
-    } */
 }

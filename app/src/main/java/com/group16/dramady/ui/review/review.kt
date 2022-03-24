@@ -8,15 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.group16.dramady.R
 import com.group16.dramady.databinding.FragmentMoviePageBinding
 import com.group16.dramady.databinding.FragmentReviewBinding
 import com.group16.dramady.storage.MovieRoomDatabase
 import com.group16.dramady.storage.entity.UserReview
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class review : Fragment() {
 
@@ -56,6 +54,7 @@ class review : Fragment() {
                             MovieRoomDatabase.getUserReviewDao()
                                 ?.updateReview(reviewEdittext.text.toString(), reviewId)
                         }
+                        findNavController().navigateUp()
                     }
                 }
             }
@@ -64,10 +63,11 @@ class review : Fragment() {
                 titleText.text = getString(R.string.createReview)
                 submitButton.setOnClickListener {
                     val content = reviewEdittext.text.toString()
-                    Log.i("temp review:", review.toString())
                     uiScope.launch(Dispatchers.IO){
                         MovieRoomDatabase.getUserReviewDao()?.insert(UserReview(id=0,movieId = titleId, review = content))
-                        Log.i("inserted", "review")
+                        withContext(Dispatchers.Main){
+                            findNavController().navigateUp()
+                        }
                     }
                 }
             }

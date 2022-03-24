@@ -17,16 +17,28 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MoviePageViewModel(titleId: String?) : ViewModel() {
-    private var titleId = titleId
+    private val titleId = titleId
 
     private var _myReview = MutableLiveData<UserReview>().also {
         if(titleId != null){
             viewModelScope.launch(Dispatchers.IO){
                 val review = MovieRoomDatabase.getUserReviewDao()?.getReviewByTitleId(titleId)
-                Log.i("review: ", review.toString())
                 if(review != null){
                     withContext(Dispatchers.Main){
                         it.value = review
+                    }
+                }
+            }
+        }
+    }
+
+    fun refreshMyReview() {
+        if(titleId != null){
+            viewModelScope.launch(Dispatchers.IO){
+                val review = MovieRoomDatabase.getUserReviewDao()?.getReviewByTitleId(titleId)
+                if(review != null){
+                    withContext(Dispatchers.Main){
+                        _myReview.value = review
                     }
                 }
             }
@@ -37,7 +49,6 @@ class MoviePageViewModel(titleId: String?) : ViewModel() {
         if(titleId != null){
             viewModelScope.launch(Dispatchers.IO) {
                 val list = apiManager.getReviewsByTitleId(titleId)
-                Log.i("review list:", list.toString())
                 withContext(Dispatchers.Main){
                     it.value = list
                 }

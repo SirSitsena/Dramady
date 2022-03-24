@@ -9,6 +9,7 @@
     <fragment
         android:id="@+id/search_page"
         android:name="com.group16.dramady.ui.search_page.SearchPageFragment"
+        android:label="Dramady"
         tools:layout="@layout/fragment_search_page" />
 
     <fragment

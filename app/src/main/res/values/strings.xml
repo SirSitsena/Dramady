@@ -28,4 +28,5 @@
     <string name="createReview">Create Review</string>
     <string name="updateReview">Update Review</string>
     <string name="myreview">My review:</string>
+    <string name="content_review">Content of the review</string>
 </resources>

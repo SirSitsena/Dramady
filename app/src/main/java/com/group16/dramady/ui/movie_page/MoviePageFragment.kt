@@ -174,6 +174,11 @@ class MoviePageFragment : Fragment() {
         return root
     }
 
+    override fun onResume() {
+        viewModel.refreshMyReview()
+        super.onResume()
+    }
+
     override fun onDestroyView() {
         job.cancel()
         super.onDestroyView()
