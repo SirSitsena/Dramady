@@ -23,7 +23,7 @@ object Updater {
         }
     }
 
-    suspend fun updateAllTimeBest(){
+    suspend fun updateAllTimeBest(): Boolean{
         val movieDao = MovieRoomDatabase.getAllTimeBestDao()!!
 
         val allTimeBestList = apiManager.getAllTimeBestList()
@@ -37,6 +37,9 @@ object Updater {
             for ( movieApi in allTimeBestList ){
                 movieDao.insert( movieApi)
             }
+            return true
+        } else {
+            return false
         }
     }
 }

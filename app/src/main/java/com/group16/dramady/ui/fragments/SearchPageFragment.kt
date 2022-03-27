@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.group16.dramady.R
 import com.group16.dramady.databinding.FragmentSearchPageBinding
 import com.group16.dramady.ui.adapters.SearchListAdapter
 import com.group16.dramady.ui.models.SearchPageViewModel
@@ -32,11 +33,6 @@ class SearchPageFragment : Fragment() {
         _binding = FragmentSearchPageBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSearchPage
-        searchPageViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-
         val resultsList: ListView = binding.searchResultsSearchPage
         resultsList.adapter =
             searchPageViewModel.resultList.value?.let { SearchListAdapter(requireActivity(), it) }
@@ -45,9 +41,13 @@ class SearchPageFragment : Fragment() {
             resultsList.adapter = SearchListAdapter(requireActivity(), it)
         })
 
-        val loadingText: TextView = binding.searchTextSearchPage
-        searchPageViewModel.searchResult.observe(viewLifecycleOwner, Observer {
-            loadingText.text = it
+        val loadingBar = binding.progressBar
+        searchPageViewModel.searchStatus.observe(viewLifecycleOwner, Observer {
+            if(it){
+                loadingBar.visibility = View.VISIBLE
+            } else {
+                loadingBar.visibility = View.INVISIBLE
+            }
         })
 
         val editText: EditText = binding.searchKeywordsSearchPage
@@ -56,7 +56,17 @@ class SearchPageFragment : Fragment() {
 
         searchButton.setOnClickListener {
             val keywords = editText.editableText.toString()
-            searchPageViewModel.search(keywords)
+            if(keywords.length < 3){
+                Toast.makeText(requireActivity(), R.string.toast_search_length,
+                    Toast.LENGTH_LONG).show()
+
+            } else {
+                binding.progressBar.visibility = View.VISIBLE
+                searchPageViewModel.search(keywords){
+                    Toast.makeText( context, R.string.search_page_fetch_fail,
+                        Toast.LENGTH_LONG).show()
+                }
+            }
         }
 
 //        thread { //Testing the thread and OkHttp library

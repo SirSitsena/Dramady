@@ -32,4 +32,10 @@
     <string name="russian_button">Русский</string>
     <string name="language_button">Смена языка</string>
     <string name="english_button">Английский</string>
+    <string name="toast_search_length">Минимум 3 символа</string>
+    <string name="internet_alert">Нет интернета</string>
+    <string name="internet_alert_desc">Оффлайн режим, поиск не доступен</string>
+    <string name="internet_button">Окей</string>
+    <string name="search_movie_hint">Искать фильм по названию</string>
+    <string name="search_page_fetch_fail">Ошибка, проверь соединение</string>
 </resources>

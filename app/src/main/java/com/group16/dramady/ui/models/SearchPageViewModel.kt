@@ -1,10 +1,14 @@
 package com.group16.dramady.ui.models
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.group16.dramady.R
 import com.group16.dramady.rest.apiManager
 import com.group16.dramady.rest.result_type.SearchMovie
 import kotlinx.coroutines.Dispatchers
@@ -17,18 +21,17 @@ class SearchPageViewModel : ViewModel() {
         it.value = "Search Page"
     }
 
-    private var _resultText = MutableLiveData<String>()
+    private var statusBar = MutableLiveData<Boolean>()
     private var _resultList = MutableLiveData<List<SearchMovie.aMovie>>()
 
     var resultList: LiveData<List<SearchMovie.aMovie>> = _resultList
 
-
-    val searchResult: LiveData<String> = _resultText
+    val searchStatus: LiveData<Boolean> = statusBar
     val text: LiveData<String> = _text
 
-    fun search(keywords: String){
-        _resultText.value = "Loading..."
 
+    fun search(keywords: String, fail: () -> Unit){
+        statusBar.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val search = apiManager.getSearchMoviesByKeywords(keywords)
             val movies = search?.results
@@ -38,8 +41,10 @@ class SearchPageViewModel : ViewModel() {
                 Log.i("movies: ", movies.toString())
                 if(movies != null){
                     _resultList.value = movies!!
-                    _resultText.value = ""
+                } else {
+                    fail()
                 }
+                statusBar.value = false
             }
         }
     }

@@ -34,4 +34,10 @@
     <string name="russian_button">Russian</string>
     <string name="language_button">Language</string>
     <string name="english_button">English</string>
+    <string name="toast_search_length">Please enter minumum 3 symbols</string>
+    <string name="internet_alert">No internet connection</string>
+    <string name="internet_alert_desc">Offline mode, Search is not available</string>
+    <string name="internet_button">Ok</string>
+    <string name="search_movie_hint">Search movie by title</string>
+    <string name="search_page_fetch_fail">Error, check internet</string>
 </resources>

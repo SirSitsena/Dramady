@@ -29,7 +29,6 @@ object apiManager {
     private val gson = Gson()
     inline fun <reified T> Gson.fromJson(json: String) = fromJson<T>(json, object: TypeToken<T>() {}.type)
 
-//    private val movieListAdapter = gson.getAdapter(Class<List<PopularNowMovies>>)
     private val searchResultAdapter = gson.getAdapter(SearchMovie::class.java)
     private val searchMovieResultAdapter = gson.getAdapter(SearchResultMovie::class.java)
     private val reviewsResultAdapter = gson.getAdapter(Reviews::class.java)

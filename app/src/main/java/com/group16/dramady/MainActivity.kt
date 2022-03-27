@@ -1,11 +1,8 @@
 package com.group16.dramady
 
-import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.group16.dramady.databinding.ActivityMainBinding
 import com.group16.dramady.storage.MovieRoomDatabase
 import kotlinx.coroutines.*
-import java.util.*
-import java.util.prefs.AbstractPreferences
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,33 +53,28 @@ class MainActivity : AppCompatActivity() {
         // Initializes the database object
         MovieRoomDatabase.getDatabase(this, applicationScope)
 
-
-
         applicationScope.launch(Dispatchers.IO){ // Separate in a new Class for Database Updates
-            Updater.updateAllTimeBest()
+            var isUpdated = Updater.updateAllTimeBest()
             Updater.updatePopularNow()
+            if(!isUpdated){
+                applicationScope.launch(Dispatchers.Main){
+                    AlertDialog.Builder(this@MainActivity)
+                        .setTitle(this@MainActivity.getString(R.string.internet_alert))
+                        .setMessage(this@MainActivity.getString(R.string.internet_alert_desc))
+                        .setPositiveButton(
+                            this@MainActivity.getString(R.string.internet_button)
+                        ) { dialog, whichButton -> {}
+                        }.show()
+                }
+
+            }
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
-        menu.findItem(R.id.lang_ru).setOnMenuItemClickListener {
-            val ruLang = Locale("RU")
-            Locale.setDefault(ruLang)
-            var config = Configuration()
-            config.setLocale(ruLang)
-            baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-            return@setOnMenuItemClickListener true
-        }
-        menu.findItem(R.id.lang_en).setOnMenuItemClickListener {
-            val enLang = Locale("EN")
-            Locale.setDefault(enLang)
-            var config = Configuration()
-            config.setLocale(enLang)
-            baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-            return@setOnMenuItemClickListener true
-        }
+
         return true
     }
 
