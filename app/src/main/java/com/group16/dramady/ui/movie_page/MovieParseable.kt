@@ -69,7 +69,7 @@ class MovieParseable(private val rank: Int?,
         return imDbRating ?: "No imdb rating available.."
     }
     public fun getImDbRatingVotes(): String {
-        return imDbRatingVotes?: "No imdb rating votes available.."
+        return imDbRatingVotes?: "0"
     }
     public fun getMetacriticRating(): Int {
         return metacriticRating?: 0

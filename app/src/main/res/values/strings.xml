@@ -29,4 +29,9 @@
     <string name="updateReview">Update Review</string>
     <string name="myreview">My review:</string>
     <string name="content_review">Content of the review</string>
+    <string name="message_check_internet">Check your internet connection and restart the app</string>
+    <string name="empty_list">The list is empty</string>
+    <string name="russian_button">Russian</string>
+    <string name="language_button">Language</string>
+    <string name="english_button">English</string>
 </resources>

@@ -4,8 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.group16.dramady.storage.MovieRoomDatabase
-import com.group16.dramady.storage.entity.FavouritedMovies
 import com.group16.dramady.storage.entity.WatchListMovies
 
 @Dao

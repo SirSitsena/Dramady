@@ -1,12 +1,10 @@
 package com.group16.dramady.storage.entity
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "all_time_best_table")
-open class AllTimeBestMovies (
+@Entity(tableName = "favourited_movies_table")
+class FavoritedMovies (
     @PrimaryKey(autoGenerate = false) val id: String,
     val rank : Int,
     val title : String,

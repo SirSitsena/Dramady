@@ -1,6 +1,7 @@
 package com.group16.dramady
 
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.group16.dramady.databinding.ActivityMainBinding
 import com.group16.dramady.storage.MovieRoomDatabase
 import kotlinx.coroutines.*
+import java.util.*
 import java.util.prefs.AbstractPreferences
 
 class MainActivity : AppCompatActivity() {
@@ -62,14 +64,27 @@ class MainActivity : AppCompatActivity() {
             Updater.updateAllTimeBest()
             Updater.updatePopularNow()
         }
-
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+        menu.findItem(R.id.lang_ru).setOnMenuItemClickListener {
+            val ruLang = Locale("RU")
+            Locale.setDefault(ruLang)
+            var config = Configuration()
+            config.setLocale(ruLang)
+            baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+            return@setOnMenuItemClickListener true
+        }
+        menu.findItem(R.id.lang_en).setOnMenuItemClickListener {
+            val enLang = Locale("EN")
+            Locale.setDefault(enLang)
+            var config = Configuration()
+            config.setLocale(enLang)
+            baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+            return@setOnMenuItemClickListener true
+        }
         return true
     }
 

@@ -12,7 +12,7 @@ import kotlinx.coroutines.CoroutineScope
     PopularNowMovies::class,
     UserReview::class,
     AllTimeBestMovies::class,
-    FavouritedMovies::class,
+    FavoritedMovies::class,
     WatchListMovies::class), version = 1, exportSchema = false)
 public abstract class MovieRoomDatabase : RoomDatabase() {
 
@@ -20,7 +20,7 @@ public abstract class MovieRoomDatabase : RoomDatabase() {
     abstract fun allTimeBestDao(): AllTimeBestDao
     abstract fun reviewDao(): UserReviewDao
     abstract fun watchListDao(): WatchListMoviesDao
-    abstract fun favouritedDao(): FavouritedMoviesDao
+    abstract fun favoritedDao(): FavoritedMoviesDao
 
 
     companion object {
@@ -55,8 +55,8 @@ public abstract class MovieRoomDatabase : RoomDatabase() {
             return INSTANCE?.reviewDao()
         }
 
-        fun getFavouritedMoviesDao(): FavouritedMoviesDao? {
-            return INSTANCE?.favouritedDao()
+        fun getFavouritedMoviesDao(): FavoritedMoviesDao? {
+            return INSTANCE?.favoritedDao()
         }
         fun getWatchlistedMoviesDao(): WatchListMoviesDao? {
             return INSTANCE?.watchListDao()
