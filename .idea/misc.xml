@@ -5,7 +5,12 @@
       <map>
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/drawable-anydpi/favourite_filled_icon.xml" value="0.2845" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/drawable-anydpi/favourite_icon.xml" value="0.2845" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.143" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.143" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/drawable/empty_thumb_up.xml" value="0.132" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/drawable/empty_watch_later.xml" value="0.143" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/drawable/ic_clock.xml" value="0.2845" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/drawable/ic_film.xml" value="0.1265" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/drawable/thumb_up.xml" value="0.2845" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/app_bar_main.xml" value="0.5161458333333333" />
@@ -20,14 +25,14 @@
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_popular_now.xml" value="0.18881578947368421" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_review.xml" value="0.12556415215989683" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_saved_list.xml" value="0.3121584699453552" />
-        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_search_page.xml" value="0.33" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_search_page.xml" value="0.16" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/fragment_watch_list.xml" value="0.32598684210526313" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/list_item_all_time_best.xml" value="0.2657894736842105" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/list_item_all_time_best_constraint.xml" value="0.25625" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/list_item_cardview.xml" value="0.25625" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/list_item_popular_now.xml" value="0.25625" />
-        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/list_item_search_result.xml" value="0.2657894736842105" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/list_item_search_result.xml" value="0.14" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/list_reviews.xml" value="0.2657894736842105" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/movie_list.xml" value="0.25625" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/nav_header_main.xml" value="0.33" />
@@ -35,6 +40,8 @@
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/layout/reviews_dialog.xml" value="0.2657894736842105" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
         <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/menu/main.xml" value="0.2582236842105263" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
+        <entry key="..\:/Users/Anestis/AndroidStudioProjects/Dramady/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.196" />
         <entry key="..\:/Users/rasmu/Documents/Skola/Android-Development/Dramady/app/src/main/res/drawable-anydpi/favourite_icon.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/rasmu/Documents/Skola/Android-Development/Dramady/app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/rasmu/Documents/Skola/Android-Development/Dramady/app/src/main/res/layout/activity_main.xml" value="0.2578125" />

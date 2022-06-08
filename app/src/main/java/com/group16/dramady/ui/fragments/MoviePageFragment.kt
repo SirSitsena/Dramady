@@ -1,5 +1,6 @@
 package com.group16.dramady.ui.fragments
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -14,7 +15,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.group16.dramady.R
 import com.group16.dramady.databinding.FragmentMoviePageBinding
-import com.group16.dramady.ui.adapters.ReviewsArrayAdapter
+import com.group16.dramady.ui.adapters.ReviewsListAdapter
 import com.group16.dramady.ui.models.MoviePageViewModel
 import com.group16.dramady.ui.movie_page.MovieParseable
 import com.squareup.picasso.Picasso
@@ -36,6 +37,7 @@ class MoviePageFragment : Fragment() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,21 +90,21 @@ class MoviePageFragment : Fragment() {
 
         viewModel.reviews.observe(viewLifecycleOwner, Observer {
             if(it != null){
-                listView.adapter = ReviewsArrayAdapter(requireContext(), it)
+                listView.adapter = ReviewsListAdapter(requireContext(), it)
             }
         })
 
         viewModel.isFavourited.observe(viewLifecycleOwner, Observer {
             if(it == true){
                 favouriteIcon.setImageResource(R.drawable.thumb_up)
-                if(titleId != null && movie != null){
+                if(titleId != null){
                     favouriteIcon.setOnClickListener {
                         viewModel.deleteFavourite(titleId)
                     }
                 }
             } else {
                 favouriteIcon.setImageResource(R.drawable.empty_thumb_up)
-                if(titleId != null && movie != null){
+                if(titleId != null){
                     favouriteIcon.setOnClickListener {
                         viewModel.addFavourite(titleId, movie)
                     }
@@ -113,14 +115,14 @@ class MoviePageFragment : Fragment() {
         viewModel.isWatchlisted.observe(viewLifecycleOwner, Observer {
             if(it == true){
                 watchlistIcon.setImageResource(R.drawable.watch_later)
-                if(titleId != null && movie != null){
+                if(titleId != null){
                     watchlistIcon.setOnClickListener {
                         viewModel.deleteWatchlistItem(titleId)
                     }
                 }
             } else {
                 watchlistIcon.setImageResource(R.drawable.empty_watch_later)
-                if(titleId != null && movie != null) {
+                if(titleId != null) {
                     watchlistIcon.setOnClickListener {
                         viewModel.addWatchlistItem(titleId, movie)
                     }
@@ -128,39 +130,25 @@ class MoviePageFragment : Fragment() {
             }
         })
 
-        val imageView = binding.imageMoviePage
-        val titleView = binding.titleMoviePage
-        val yearView = binding.yearMoviePage
-        val imDbRatingView = binding.imdbRatingMoviePage
-        val plotView = binding.plotMoviePage
-        val releaseDateView = binding.releaseDateMoviePage
-        val runtimeStrView = binding.runtimeStrMoviePage
-        val directorsView = binding.directorsMoviePage
-        val starsView = binding.starsMoviePage
-        val genresView = binding.genresMoviePage
-        val imDbRatingSecondView = binding.imDbRating2MoviePage
-        val imDbRatingCountView = binding.imdbRatingCountMoviePage
-        val metacriticView = binding.metacriticMoviePage
-
-
         if (titleId != null) {
-            val picasso = Picasso.get()
+            Picasso.get()
                 .load(movie.getImage())
+                .placeholder(R.drawable.no_image)
                 .resize(450, 450)
                 .centerCrop()
-                .into(imageView)
-            titleView.text = movie.getTitle()
-            yearView.text = movie.getYear()
-            imDbRatingView.text = "("+movie.getImDbRating().toString()+")"
-            releaseDateView.text = movie.getReleaseDate()
-            plotView.text = movie.getPlot()
-            runtimeStrView.text = "Runtime: "+movie.getRuntimeStr()
-            directorsView.text = "Directors: "+movie.getDirectors()
-            starsView.text = "Stars: "+movie.getStars()
-            genresView.text = "Genres: "+movie.getGenres()
-            imDbRatingSecondView.text = "IMDB rating: ("+movie.getImDbRating()+")"
-            imDbRatingCountView.text = "Vote count: ("+movie.getImDbRatingVotes()+")"
-            metacriticView.text = "Metacritic: ("+movie.getMetacriticRating()+"/100)"
+                .into(binding.imageMoviePage)
+            binding.titleMoviePage.text = movie.getTitle()
+            binding.yearMoviePage.text = movie.getYear()
+            binding.imdbRatingMoviePage.text = "("+movie.getImDbRating()+")"
+            binding.plotMoviePage.text = movie.getPlot()
+            binding.releaseDateMoviePage.text = movie.getReleaseDate()
+            binding.runtimeStrMoviePage.text = getString(R.string.runtime_list_item)+ ": "+movie.getRuntimeStr()
+            binding.directorsMoviePage.text = getString(R.string.directors_list_item)+ ": "+movie.getDirectors()
+            binding.starsMoviePage.text = getString(R.string.stars_list_item)+ ": "+movie.getStars()
+            binding.genresMoviePage.text = getString(R.string.genres_list_item)+ ": "+movie.getGenres()
+            binding.imDbRating2MoviePage.text = getString(R.string.imdb_rating_list_item)+ ": ("+movie.getImDbRating()+")"
+            binding.imdbRatingCountMoviePage.text = getString(R.string.imdb_votes_list_item)+": ("+movie.getImDbRatingVotes()+")"
+            binding.metacriticMoviePage.text = getString(R.string.metacritic_list_item)+": ("+movie.getMetacriticRating()+"/100)"
         }
 
 
@@ -181,8 +169,6 @@ class MoviePageFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MoviePageViewModel::class.java)
-
-    // TODO: Use the ViewModel
     }
 
 }

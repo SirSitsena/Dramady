@@ -4,25 +4,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.group16.dramady.storage.MovieRoomDatabase
-import com.group16.dramady.storage.entity.AllTimeBestMovies
+import com.group16.dramady.storage.DramadyRoomDatabase
+import com.group16.dramady.storage.entity.AllTimeBestMovie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AllTimeBestViewModel : ViewModel(), MoviesListI<AllTimeBestMovies> {
+class AllTimeBestViewModel : ViewModel(), MoviesListI<AllTimeBestMovie> {
 
-    private val _list = MutableLiveData<List<AllTimeBestMovies>>().also {
+    private val _list = MutableLiveData<List<AllTimeBestMovie>>().also {
 
         update()
     }
-    override var list: LiveData<List<AllTimeBestMovies>> = _list
+    override var list: LiveData<List<AllTimeBestMovie>> = _list
     override fun update() {
         viewModelScope.launch(Dispatchers.IO) {
-            var allTimeBestList = MovieRoomDatabase.getAllTimeBestDao()?.getMoviesSortedByRank()
+            val allTimeBestList = DramadyRoomDatabase.getAllTimeBestDao().getMoviesSortedByRank()
 
             withContext(Dispatchers.Main) {
-               _list.value = allTimeBestList
+                _list.value = allTimeBestList
             }
         }
     }

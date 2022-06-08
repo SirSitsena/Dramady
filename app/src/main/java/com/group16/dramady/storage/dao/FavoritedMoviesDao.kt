@@ -4,16 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.group16.dramady.storage.entity.FavoritedMovies
+import com.group16.dramady.storage.entity.FavoritedMovie
 
 @Dao
 interface FavoritedMoviesDao {
 
     @Query("SELECT * FROM favourited_movies_table")
-    fun getFavouritedMovies(): List<FavoritedMovies>
+    fun getFavouritedMovies(): List<FavoritedMovie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(movie: FavoritedMovies)
+    suspend fun insert(movie: FavoritedMovie)
 
     @Query("DELETE FROM favourited_movies_table")
     suspend fun deleteAll()

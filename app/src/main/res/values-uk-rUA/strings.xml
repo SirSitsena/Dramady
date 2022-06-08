@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="popular_now">Популярні фільми</string>
+    <string name="all_time_best_movies">Топ фільмів</string>
+    <string name="favorites_list">Улюблені фільми</string>
+    <string name="watch_list">Переглянути пізніше</string>
+    <string name="search_page">Сторінка пошуку</string>
+    <string name="search_search_page">Шукати!</string>
+    <string name="genres_list_item">Жанри</string>
+    <string name="stars_list_item">Актори</string>
+    <string name="movie_page">Сторінка Фільма</string>
+    <string name="Reviews">Відгуки</string>
+    <string name="View_Reviews">Відгуки</string>
+    <string name="leave_note">Залишити відгук</string>
+    <string name="submit">Зберегти</string>
+    <string name="createReview">Створити відгук</string>
+    <string name="updateReview">Оновити</string>
+    <string name="myreview">Мій відгук:</string>
+    <string name="content_review">Текст відгука</string>
+    <string name="message_check_internet">Перевір з\'єднання та перезапусти програму</string>
+    <string name="empty_list">Список порожній</string>
+    <string name="toast_search_length">Мінімум 3 символи</string>
+    <string name="internet_alert">Немає інтернету</string>
+    <string name="internet_alert_desc">Режим офлайн, пошук не доступний</string>
+    <string name="internet_button">Добре</string>
+    <string name="search_movie_hint">Шукати фільм за назвою</string>
+    <string name="search_page_fetch_fail">Помилка, перевір з\'єднання</string>
+    <string name="runtime_list_item">Тривалість</string>
+    <string name="directors_list_item">Режисери</string>
+    <string name="imdb_rating_list_item">IMDB рейтинг</string>
+    <string name="imdb_votes_list_item">Голоси</string>
+    <string name="empty_search_result">Кіна не буде</string>
+</resources>

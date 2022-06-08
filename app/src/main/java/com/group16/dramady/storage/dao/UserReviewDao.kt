@@ -16,7 +16,7 @@ interface UserReviewDao {
     fun getReviewById(reviewId: Int): UserReview
 
     @Query("SELECT * FROM review_table WHERE movieId=:titleId")
-    fun getReviewByTitleId(titleId: String): UserReview
+    fun getReviewByTitleId(titleId: String): UserReview?
 
     @Query("UPDATE review_table SET review = :review WHERE id = :reviewId")
     fun updateReview(review: String, reviewId: Int)

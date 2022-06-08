@@ -4,24 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.group16.dramady.storage.MovieRoomDatabase
-import com.group16.dramady.storage.entity.AllTimeBestMovies
-import com.group16.dramady.storage.entity.FavoritedMovies
+import com.group16.dramady.storage.DramadyRoomDatabase
+import com.group16.dramady.storage.entity.FavoritedMovie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavoriteListViewModel : ViewModel(), MoviesListI<FavoritedMovies>  {
+class FavoriteListViewModel : ViewModel(), MoviesListI<FavoritedMovie> {
 
 
-
-    private val _list = MutableLiveData<List<FavoritedMovies>>().also {
+    private val _list = MutableLiveData<List<FavoritedMovie>>().also {
         update()
     }
-    override val list: LiveData<List<FavoritedMovies>> = _list
+    override val list: LiveData<List<FavoritedMovie>> = _list
     override fun update() {
         viewModelScope.launch(Dispatchers.IO) {
-            var favouritesList = MovieRoomDatabase.getFavouritedMoviesDao()?.getFavouritedMovies()
+            var favouritesList = DramadyRoomDatabase.getFavouritedMoviesDao().getFavouritedMovies()
 
             withContext(Dispatchers.Main) {
                 _list.value = favouritesList

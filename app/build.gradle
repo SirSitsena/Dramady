@@ -6,7 +6,11 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    signingConfigs {
+        release {
+        }
+    }
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.group16.dramady"

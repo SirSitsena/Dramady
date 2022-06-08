@@ -4,13 +4,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "favourited_movies_table")
-class FavoritedMovies (
+class FavoritedMovie(
     @PrimaryKey(autoGenerate = false) val id: String,
-    val rank : Int,
-    val title : String,
-    val fullTitle : String,
-    val year : String,
-    val image : String,
+    val rank: Int,
+    val title: String,
+    val fullTitle: String,
+    val year: String,
+    val image: String,
     val releaseDate: String,
     val runtimeMins: Int,
     val runtimeStr: String,

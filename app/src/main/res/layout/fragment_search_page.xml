@@ -5,7 +5,7 @@
     android:id="@+id/s"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_gray"
+    android:background="@color/page_bg"
     tools:context=".ui.fragments.SearchPageFragment">
 
     <LinearLayout
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:divider="@android:color/transparent"
-            android:dividerHeight="10sp" />
+            android:dividerHeight="0sp" />
 
 
     </LinearLayout>

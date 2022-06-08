@@ -10,7 +10,11 @@
         android:id="@+id/search_page"
         android:name="com.group16.dramady.ui.fragments.SearchPageFragment"
         android:label="@string/search_page"
-        tools:layout="@layout/fragment_search_page" />
+        tools:layout="@layout/fragment_search_page" >
+        <action
+            android:id="@+id/action_search_page_to_moviePageFragment"
+            app:destination="@id/moviePageFragment" />
+    </fragment>
 
 
     <fragment
@@ -27,24 +31,48 @@
         android:id="@+id/all_time_best"
         android:name="com.group16.dramady.ui.fragments.MoviesListFragment"
         android:label="@string/all_time_best_movies"
-        tools:layout="@layout/fragment_movies_list" />
+        tools:layout="@layout/fragment_movies_list" >
+        <action
+            android:id="@+id/action_all_time_best_to_moviePageFragment"
+            app:destination="@id/moviePageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/watch_list"
         android:name="com.group16.dramady.ui.fragments.MoviesListFragment"
         android:label="@string/watch_list"
-        tools:layout="@layout/fragment_movies_list" />
+        tools:layout="@layout/fragment_movies_list" >
+        <action
+            android:id="@+id/action_watch_list_to_moviePageFragment"
+            app:destination="@id/moviePageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/favorite_list"
         android:name="com.group16.dramady.ui.fragments.MoviesListFragment"
         android:label="@string/favorites_list"
-        tools:layout="@layout/fragment_movies_list" />
+        tools:layout="@layout/fragment_movies_list" >
+        <action
+            android:id="@+id/action_favorite_list_to_moviePageFragment"
+            app:destination="@id/moviePageFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/moviePageFragment"
         android:name="com.group16.dramady.ui.fragments.MoviePageFragment"
         android:label="@string/movie_page"
-        tools:layout="@layout/fragment_movie_page" />
+        tools:layout="@layout/fragment_movie_page" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="movie"
+            app:argType="com.group16.dramady.ui.movie_page.MovieParseable"/>
+        <action
+            android:id="@+id/action_moviePageFragment_to_review"
+            app:destination="@id/review" />
+    </fragment>
+
     <fragment
         android:id="@+id/review"
         android:name="com.group16.dramady.ui.fragments.Review"

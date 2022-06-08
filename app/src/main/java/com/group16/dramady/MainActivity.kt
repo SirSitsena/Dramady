@@ -1,30 +1,36 @@
 package com.group16.dramady
 
+import android.app.Activity
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.navigation.NavigationView
 import com.group16.dramady.databinding.ActivityMainBinding
-import com.group16.dramady.storage.MovieRoomDatabase
-import kotlinx.coroutines.*
+import com.group16.dramady.rest.apiManager
+import com.group16.dramady.storage.DramadyRoomDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     // No need to cancel this scope as it'll be torn down with the process
     val applicationScope = CoroutineScope(SupervisorJob())
-
-    // Using by lazy so the database and the repository are only created when they're needed
-    // rather than when the application starts
-//    val database by lazy { MovieRoomDatabase.getDatabase(this, applicationScope) }
-//    val repository by lazy { MovieRepository(database.movieDao()) } //---> Do we need to implement that? \Anestis
-
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -36,10 +42,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
-        
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -51,22 +58,21 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         // Initializes the database object
-        MovieRoomDatabase.getDatabase(this, applicationScope)
+        DramadyRoomDatabase.init(this, applicationScope)
 
-        applicationScope.launch(Dispatchers.IO){ // Separate in a new Class for Database Updates
-            var isUpdated = Updater.updateAllTimeBest()
-            Updater.updatePopularNow()
-            if(!isUpdated){
-                applicationScope.launch(Dispatchers.Main){
+        applicationScope.launch(Dispatchers.IO) { // Separate in a new Class for Database Updates
+            DBUpdater.updateAllTimeBest()
+            DBUpdater.updatePopularNow()
+            if (!apiManager.isOnline(this@MainActivity)) {
+                applicationScope.launch(Dispatchers.Main) {
                     AlertDialog.Builder(this@MainActivity)
                         .setTitle(this@MainActivity.getString(R.string.internet_alert))
                         .setMessage(this@MainActivity.getString(R.string.internet_alert_desc))
                         .setPositiveButton(
                             this@MainActivity.getString(R.string.internet_button)
-                        ) { dialog, whichButton -> {}
+                        ) { _, _ ->
                         }.show()
                 }
-
             }
         }
     }
@@ -82,4 +88,5 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
 }

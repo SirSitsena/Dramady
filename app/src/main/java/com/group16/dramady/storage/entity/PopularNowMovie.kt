@@ -3,14 +3,14 @@ package com.group16.dramady.storage.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "watchlist_movies_table")
-class WatchListMovies (
+@Entity(tableName = "popular_now_table")
+class PopularNowMovie(
     @PrimaryKey(autoGenerate = false) val id: String,
-    val rank : Int,
-    val title : String,
-    val fullTitle : String,
-    val year : String,
-    val image : String,
+    val rank: Int,
+    val title: String,
+    val fullTitle: String,
+    val year: String,
+    val image: String,
     val releaseDate: String,
     val runtimeMins: Int,
     val runtimeStr: String,

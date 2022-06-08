@@ -1,7 +1,6 @@
 package com.group16.dramady.ui.adapters
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,19 +8,22 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import com.group16.dramady.R
 import com.group16.dramady.rest.apiManager
-import com.group16.dramady.rest.result_type.SearchMovie
+import com.group16.dramady.rest.result_type.FoundMovies
 import com.group16.dramady.ui.movie_page.MovieParseable
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 
-class SearchListAdapter(private val context: Context,
-                        private val dataSource: List<SearchMovie.aMovie>
+class SearchListAdapter(
+    private val context: Context,
+    private val dataSource: List<FoundMovies.Movie>
 ) : BaseAdapter() {
 
-    private val inflator: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
@@ -30,7 +32,7 @@ class SearchListAdapter(private val context: Context,
         return dataSource.size
     }
 
-    override fun getItem(position: Int): SearchMovie.aMovie {
+    override fun getItem(position: Int): FoundMovies.Movie {
         return dataSource[position]
     }
 
@@ -39,60 +41,67 @@ class SearchListAdapter(private val context: Context,
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val rowView = inflator.inflate(R.layout.list_item_search_result, parent, false)
+        val itemView = convertView ?: inflater.inflate(R.layout.list_item_search_result, parent, false)
 
-        val titleTextView = rowView.findViewById(R.id.title_search_list_item) as TextView
+        val titleTextView = itemView.findViewById(R.id.title_search_list_item) as TextView
         //val descTextView = rowView.findViewById(R.id.description_search_list_item) as TextView
-        val imageView = rowView.findViewById(R.id.image_search_list_item) as ImageView
+        val imageView = itemView.findViewById(R.id.image_search_list_item) as ImageView
 
 
-
-        val rowMovie = getItem(position)
-        titleTextView.text = rowMovie?.title ?: "No title available" //ADD  LOCALIZATION STRINGS
+        val itemMovie = getItem(position)
+        titleTextView.text = itemMovie.title //ADD  LOCALIZATION STRINGS
         //descTextView.text = movie?.description ?: "No desc available"
 
 
-        val picasso = Picasso.get()
-            .load(rowMovie.image)
+        Picasso.get()
+            .load(itemMovie.image)
+            .placeholder(R.drawable.no_image)
             .resize(300, 300)
             .centerCrop()
             .into(imageView)
         //Log.i("image string: ", rowMovie?.image.toString())
 
-        rowView.setOnClickListener {
-            uiScope.launch(Dispatchers.IO){
-                val movie = apiManager.getMovieByTitleId(rowMovie?.id)
-                Log.i("movie: ", movie.toString())
-                withContext(Dispatchers.Main) {
-                    val parseableMovie = MovieParseable(0,
-                        movie?.title,
-                        movie?.fullTitle,
-                        movie?.year,
-                        movie?.image,
-                        movie?.releaseDate,
-                        movie?.runtimeMins,
-                        movie?.runtimeStr,
-                        movie?.plot,
-                        movie?.directors,
-                        movie?.writers,
-                        movie?.stars,
-                        movie?.genres,
-                        movie?.companies,
-                        movie?.contentRating,
-                        movie?.imDbRating,
-                        movie?.imDbRatingCount,
-                        movie?.metaCriticRating
-                    )
-                    val bundle = Bundle()
-                    bundle.putString("id", movie?.id)
-                    bundle.putSerializable("movie", parseableMovie)
-                    rowView.findNavController().navigate(R.id.moviePageFragment, bundle)
+        itemView.setOnClickListener {
+            if(apiManager.isOnline(context)){
+                uiScope.launch(Dispatchers.IO) {
+                    val movie = apiManager.getMovieByTitleId(itemMovie.id)
+                    Log.i("movie: ", movie.toString())
+                    withContext(Dispatchers.Main) {
+                        val parseableMovie = MovieParseable(
+                            0,
+                            movie?.title,
+                            movie?.fullTitle,
+                            movie?.year,
+                            movie?.image,
+                            movie?.releaseDate,
+                            movie?.runtimeMins,
+                            movie?.runtimeStr,
+                            movie?.plot,
+                            movie?.directors,
+                            movie?.writers,
+                            movie?.stars,
+                            movie?.genres,
+                            movie?.companies,
+                            movie?.contentRating,
+                            movie?.imDbRating,
+                            movie?.imDbRatingCount,
+                            movie?.metaCriticRating
+                        )
+                        val bundle = bundleOf(MovieParseable.KEY_ID to movie?.id, MovieParseable.KEY_MOVIE to parseableMovie )
+                        itemView.findNavController().navigate(R.id.moviePageFragment, bundle)
+                    }
                 }
+            } else {
+                AlertDialog.Builder(context)
+                    .setTitle(context.getString(R.string.internet_alert))
+                    .setMessage(context.getString(R.string.internet_alert_desc))
+                    .setPositiveButton(
+                        context.getString(R.string.internet_button)
+                    ) { _, _ ->
+                    }.show()
             }
-
-
         }
 
-        return rowView
+        return itemView
     }
 }
