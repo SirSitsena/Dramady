@@ -31,4 +31,5 @@
     <string name="imdb_votes_list_item">Vote count</string>
     <string name="metacritic_list_item" translatable="false">Metacritic</string>
     <string name="empty_search_result">No movies found</string>
+    <string name="search_server_fail">Search server is down</string>
 </resources>

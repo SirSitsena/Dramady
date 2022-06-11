@@ -38,8 +38,6 @@ class MoviesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-//        findNavController()..
-
         val destinationId = findNavController().currentDestination?.id
 
         viewModel = when (destinationId) {

@@ -19,7 +19,7 @@ class FavoriteListViewModel : ViewModel(), MoviesListI<FavoritedMovie> {
     override val list: LiveData<List<FavoritedMovie>> = _list
     override fun update() {
         viewModelScope.launch(Dispatchers.IO) {
-            var favouritesList = DramadyRoomDatabase.getFavouritedMoviesDao().getFavouritedMovies()
+            val favouritesList = DramadyRoomDatabase.getFavouritedMoviesDao().getFavouritedMovies()
 
             withContext(Dispatchers.Main) {
                 _list.value = favouritesList

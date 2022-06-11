@@ -50,7 +50,7 @@ class FavoriteListAdapter(private val context: Context, private val dataSource: 
         val starsTextView = itemView.findViewById(R.id.stars_card_list_item) as TextView
 
         val movie = getItem(position)
-        titleTextView.text = movie.title //ADD  LOCALIZATION STRINGS
+        titleTextView.text = movie.title
         yearTextView.text = movie.year
         imdbRatingTextView.text = "(" + movie.imDbRating.toString() + "/10)"
         genresTextView.text = movie.genres

@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.group16.dramady.MainActivity
 import com.group16.dramady.R
 import com.group16.dramady.databinding.FragmentSearchPageBinding
+import com.group16.dramady.rest.apiManager
 import com.group16.dramady.ui.adapters.SearchListAdapter
 import com.group16.dramady.ui.models.ResultErrors
 import com.group16.dramady.ui.models.SearchPageViewModel
@@ -70,7 +71,6 @@ class SearchPageFragment : Fragment() {
         }
 
         val editText: EditText = binding.searchKeywordsSearchPage
-
         val searchButton: Button = binding.searchButtonSearchPage
 
         searchButton.setOnClickListener {
@@ -85,14 +85,20 @@ class SearchPageFragment : Fragment() {
             } else {
                 binding.progressBar.visibility = View.VISIBLE
                 searchPageViewModel.search(phrase) {
-                    Toast.makeText(
-                        requireContext(), R.string.search_page_fetch_fail,
-                        Toast.LENGTH_LONG
-                    ).show()
+                    if(apiManager.isOnline(requireContext())){
+                        Toast.makeText(
+                            requireContext(), R.string.search_server_fail,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(), R.string.search_page_fetch_fail,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         }
-
         return root
     }
 

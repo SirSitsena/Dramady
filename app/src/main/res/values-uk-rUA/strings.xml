@@ -30,4 +30,5 @@
     <string name="imdb_rating_list_item">IMDB рейтинг</string>
     <string name="imdb_votes_list_item">Голоси</string>
     <string name="empty_search_result">Кіна не буде</string>
+    <string name="search_server_fail">"Сєрвер здох. "</string>
 </resources>

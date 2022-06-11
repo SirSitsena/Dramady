@@ -44,13 +44,11 @@ class SearchListAdapter(
         val itemView = convertView ?: inflater.inflate(R.layout.list_item_search_result, parent, false)
 
         val titleTextView = itemView.findViewById(R.id.title_search_list_item) as TextView
-        //val descTextView = rowView.findViewById(R.id.description_search_list_item) as TextView
         val imageView = itemView.findViewById(R.id.image_search_list_item) as ImageView
 
 
         val itemMovie = getItem(position)
-        titleTextView.text = itemMovie.title //ADD  LOCALIZATION STRINGS
-        //descTextView.text = movie?.description ?: "No desc available"
+        titleTextView.text = itemMovie.title
 
 
         Picasso.get()
@@ -59,7 +57,6 @@ class SearchListAdapter(
             .resize(300, 300)
             .centerCrop()
             .into(imageView)
-        //Log.i("image string: ", rowMovie?.image.toString())
 
         itemView.setOnClickListener {
             if(apiManager.isOnline(context)){

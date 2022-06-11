@@ -18,7 +18,7 @@ class PopularNowViewModel : ViewModel(), MoviesListI<PopularNowMovie> {
     override var list: LiveData<List<PopularNowMovie>> = _list
     override fun update() {
         viewModelScope.launch(Dispatchers.IO) {
-            var popularNowList = DramadyRoomDatabase.getPopularNowDao().getMoviesSortedByRank()
+            val popularNowList = DramadyRoomDatabase.getPopularNowDao().getMoviesSortedByRank()
 
             withContext(Dispatchers.Main) {
                 _list.value = popularNowList

@@ -34,7 +34,7 @@ object apiManager {
     private val searchMovieResultAdapter = gson.getAdapter(SearchResultMovie::class.java)
 
 
-    fun getPopularNowList(): List<PopularNowMovie>? {   //MostPopularMovies
+    fun getPopularNowList(): List<PopularNowMovie>? {
         val request = Request.Builder()
             .url("http://$HOST/api/movies/trending")
             .build()
@@ -79,7 +79,6 @@ object apiManager {
         try {
             client.newCall(request).execute().use { response ->
                 return if (response.isSuccessful) {
-                    //Log.i("test", response.body!!.string())
                     searchResultAdapter.fromJson(response.body!!.string())//.string())
                 } else {
                     null
